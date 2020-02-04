@@ -6,17 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
-import { MainComponent } from './main/main.component';
-import { ProductosComponent } from './productos/productos.component';
-import { CategoriasComponent } from './categorias/categorias.component';
+import { InicioComponent } from './inicio/inicio.component';
+import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    MainComponent,
-    ProductosComponent,
-    CategoriasComponent
+    InicioComponent,
+    MenuLateralComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +24,7 @@ import { CategoriasComponent } from './categorias/categorias.component';
     HttpClientModule
   ],
   providers: [],
+  entryComponents: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
