@@ -14,4 +14,8 @@ export class CategoriasService {
   public getAll() {
     return this.http.get<RespuestaApi>(this.apiURL);
   }
+
+  public getNumProductosCategoria() {
+    return this.http.get<RespuestaApi>(this.apiURL + '/productosCategoria');
+  }
 }

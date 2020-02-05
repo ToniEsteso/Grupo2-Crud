@@ -4,6 +4,7 @@ import { Usuario } from '../models/usuario.model';
 import { LoginRequest } from '../models/login-request.model';
 import { ApiLoginRespuesta } from '../models/api-login-respuesta.model';
 import { ConfigApi } from './../models/config-api.model';
+import { RespuestaApiPanel } from '../models/respuesta-api-panel';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +16,8 @@ export class UsuariosService {
 
   public enviarLogin(usuario: LoginRequest) {
     return this.http.post<ApiLoginRespuesta>(this.apiURL + '/login', usuario);
+  }
+  public getNumClientes() {
+    return this.http.get<RespuestaApiPanel>(this.apiURL + '/numeroUsuarios');
   }
 }

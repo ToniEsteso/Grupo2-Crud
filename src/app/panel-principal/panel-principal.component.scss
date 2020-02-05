@@ -1,0 +1,35 @@
+.l-paneles {
+  display: grid;
+  grid-gap: 15px;
+  height: 92vh;
+  grid-template-areas:
+    "compras ingresosAnuales ingresosAnuales ingresosAnuales ingresosAnuales"
+    "clientes ingresosAnuales ingresosAnuales ingresosAnuales ingresosAnuales"
+    "productos productosMasComprados productosMasComprados comprasPorCategoria comprasPorCategoria"
+    "recetas productosMasComprados productosMasComprados comprasPorCategoria comprasPorCategoria";
+  &__compras {
+    grid-area: compras;
+  }
+  &__clientes {
+    grid-area: clientes;
+  }
+  &__productos {
+    grid-area: productos;
+  }
+  &__recetas {
+    grid-area: recetas;
+  }
+  &__ingresos-anuales {
+    grid-area: ingresosAnuales;
+  }
+  &__productos-mas-comprados {
+    grid-area: productosMasComprados;
+  }
+  &__compras-por-categoria {
+    grid-area: comprasPorCategoria;
+  }
+}
+
+.titulo {
+  height: 8vh;
+}

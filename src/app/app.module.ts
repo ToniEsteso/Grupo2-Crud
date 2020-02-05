@@ -10,6 +10,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
