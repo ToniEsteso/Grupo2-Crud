@@ -1,1 +1,50 @@
-<p>productos works!</p>
+<div class="display-4 mb-3">Productos <input class="btn btn-success" type="button" value="Nuevo Producto"
+    (click)="crearNuevoProducto()"></div>
+<div class="container">
+  <table class='table'>
+    <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>NOMBRE</th>
+        <th>PRECIO</th>
+        <th>DESCRIPCION</th>
+        <th>IMAGEN</th>
+        <th colspan="2">Opciones</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let prod of arrayProductos">
+      <th>{{prod.id}}</th>
+      <td>{{prod.nombre}}</td>
+      <td>{{prod.precio}}</td>
+      <td>{{prod.descripcion}}</td>
+      <td>{{prod.imagen}}</td>
+      <td>
+        <input class="btn btn-outline-secondary" type="button" value="Borrar" (click)="borrarCategoria(prod)">
+      </td>
+      <td>
+        <input class="btn btn-secondary" type="button" value="Modificar" (click)="modificarCategoria(prod)">
+      </td>
+    </tr>
+
+    <tr *ngIf="nuevo">
+      <th>
+        {{nuevoProducto.id}}
+      </th>
+      <td>
+        <input class="form-control" type="text" name="nuevoNombre" [(ngModel)]="nuevoProducto.nombre">
+      </td>
+      <td>
+        <input class="form-control" type="text" name="nuevoImagen" [(ngModel)]="nuevoProducto.precio">
+      </td>
+      <td>
+        <input class="form-control" type="text" name="nuevoIcono" [(ngModel)]="nuevoProducto.descripcion">
+      </td>
+      <td>
+        <input class="form-control" type="text" name="nuevoIcono" [(ngModel)]="nuevoProducto.imagen">
+      </td>
+      <td colspan="2">
+        <input class="btn btn-secondary" type="button" value="Guardar" (click)="guardarCategoria()">
+      </td>
+    </tr>
+  </table>
+</div>

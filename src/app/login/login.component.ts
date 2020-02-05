@@ -3,7 +3,7 @@ import { LoginRequest } from '../models/login-request.model';
 import { UsuariosService } from '../services/usuarios.service';
 import { Usuario } from '../models/usuario.model';
 import { ApiLoginRespuesta } from '../models/api-login-respuesta.model';
-import {Router} from '@angular/router'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -27,9 +27,9 @@ export class LoginComponent implements OnInit {
     respuesta.subscribe((apiData: ApiLoginRespuesta) => {
       if (apiData.access_token !== '') {
         localStorage.setItem('Usuario', apiData.access_token);
+        this.router.navigate(['/main']);
       }
     });
-    this.router.navigate(['/main']);
   }
 }
 

@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../models/usuario.model';
 import { LoginRequest } from '../models/login-request.model';
 import { ApiLoginRespuesta } from '../models/api-login-respuesta.model';
+import { ConfigApi } from './../models/config-api.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
-  apiURL: string = 'http://127.0.0.1:8000/api/auth'
+  apiURL: string = new ConfigApi().getApiAuth();
 
   constructor(private http: HttpClient) { }
 
