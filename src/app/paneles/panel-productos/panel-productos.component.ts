@@ -15,7 +15,6 @@ export class PanelProductosComponent implements OnInit {
   ngOnInit() {
     this.productosService.getNumProductos().subscribe((apiData: RespuestaApiPanel) => {
       this.numProductos = apiData.data;
-      console.log(this.numProductos);
     });
   }
 

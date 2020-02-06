@@ -15,7 +15,6 @@ export class PanelRecetasComponent implements OnInit {
   ngOnInit() {
     this.recetasService.getNumRecetas().subscribe((apiData: RespuestaApiPanel) => {
       this.numRecetas = apiData.data;
-      console.log(this.numRecetas);
     });
   }
 

@@ -33,7 +33,7 @@ export class ProductosComponent implements OnInit {
     });
 
     this.nuevo = true;
-    this.nuevoProducto = new Producto();
+    this.nuevoProducto = new Producto(0, '', 0, '', '');
     this.nuevoProducto.id = maxId + 1;
   }
   modificarCategoria(cat) {

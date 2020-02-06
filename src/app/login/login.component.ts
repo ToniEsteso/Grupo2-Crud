@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
   }
   enviarLogin() {
     this.usuario = new LoginRequest(this.nombre, this.contrasenya);
-    console.log(this.usuario);
 
     let respuesta = this.usuariosService.enviarLogin(this.usuario);
 

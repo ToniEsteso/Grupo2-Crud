@@ -22,52 +22,28 @@ export class PanelComprasCategoriaComponent implements OnInit, AfterViewInit, On
   ngOnInit() {
     this.categoriasService.getNumProductosCategoria().subscribe((data: RespuestaApi) => {
       this.arrayComprasCategoria = data.data;
-      console.log(this.arrayComprasCategoria);
-
+      this.crearGrafica();
     });
   }
 
   ngAfterViewInit() {
+  }
+
+  crearGrafica() {
     this.zone.runOutsideAngular(() => {
-      let chart = am4core.create("chartComprasCategoria", am4charts.PieChart);
+      let chart = am4core.create('chartComprasCategoria', am4charts.PieChart);
 
       // Add data
-      chart.data = [{
-        "country": "Lithuania",
-        "litres": 501.9
-      }, {
-        "country": "Czechia",
-        "litres": 301.9
-      }, {
-        "country": "Ireland",
-        "litres": 201.1
-      }, {
-        "country": "Germany",
-        "litres": 165.8
-      }, {
-        "country": "Australia",
-        "litres": 139.9
-      }, {
-        "country": "Austria",
-        "litres": 128.3
-      }, {
-        "country": "UK",
-        "litres": 99
-      }, {
-        "country": "Belgium",
-        "litres": 60
-      }, {
-        "country": "The Netherlands",
-        "litres": 50
-      }];
+      chart.data = this.arrayComprasCategoria;
 
       // Add and configure Series
       let pieSeries = chart.series.push(new am4charts.PieSeries());
-      pieSeries.dataFields.value = "litres";
-      pieSeries.dataFields.category = "country";
-      pieSeries.slices.template.stroke = am4core.color("#fff");
+      pieSeries.dataFields.value = 'numProductos';
+      pieSeries.dataFields.category = 'nombre';
+      pieSeries.slices.template.stroke = am4core.color('#fff');
       pieSeries.slices.template.strokeWidth = 2;
       pieSeries.slices.template.strokeOpacity = 1;
+      pieSeries.labels.template.text = "{category}: {value.value}";
 
       // This creates initial animation
       pieSeries.hiddenState.properties.opacity = 1;
@@ -77,7 +53,6 @@ export class PanelComprasCategoriaComponent implements OnInit, AfterViewInit, On
       this.chart = chart;
     });
   }
-
   ngOnDestroy() {
     this.zone.runOutsideAngular(() => {
       if (this.chart) {

@@ -7,24 +7,33 @@
     "clientes ingresosAnuales ingresosAnuales ingresosAnuales ingresosAnuales"
     "productos productosMasComprados productosMasComprados comprasPorCategoria comprasPorCategoria"
     "recetas productosMasComprados productosMasComprados comprasPorCategoria comprasPorCategoria";
+  grid-auto-rows: repeat(5, 1fr);
+  grid-auto-columns: repeat(4, 1fr);
+
   &__compras {
     grid-area: compras;
   }
+
   &__clientes {
     grid-area: clientes;
   }
+
   &__productos {
     grid-area: productos;
   }
+
   &__recetas {
     grid-area: recetas;
   }
+
   &__ingresos-anuales {
     grid-area: ingresosAnuales;
   }
+
   &__productos-mas-comprados {
     grid-area: productosMasComprados;
   }
+
   &__compras-por-categoria {
     grid-area: comprasPorCategoria;
   }

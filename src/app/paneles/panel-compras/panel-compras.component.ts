@@ -15,7 +15,6 @@ export class PanelComprasComponent implements OnInit {
   ngOnInit() {
     this.carritoService.getNumCompras().subscribe((apiData: RespuestaApiPanel) => {
       this.numCompras = apiData.data;
-      console.log(this.numCompras);
     });
   }
 

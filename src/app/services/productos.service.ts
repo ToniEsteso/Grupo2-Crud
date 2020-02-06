@@ -11,7 +11,7 @@ export class ProductosService {
   apiURL: string = new ConfigApi().getApiProductos();
   apiImagenes: string = new ConfigApi().getApiImagenes();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public getAll() {
     return this.http.get<RespuestaApi>(this.apiURL);
@@ -25,5 +25,9 @@ export class ProductosService {
 
   public getNumProductos() {
     return this.http.get<RespuestaApiPanel>(this.apiURL + '/numeroProductos');
+  }
+
+  public getProductosMasComprados() {
+    return this.http.get<RespuestaApiPanel>(this.apiURL + '/productosMasComprados');
   }
 }

@@ -15,7 +15,6 @@ export class PanelClientesComponent implements OnInit {
   ngOnInit() {
     this.usuariosService.getNumClientes().subscribe((apiData: RespuestaApiPanel) => {
       this.numClientes = apiData.data;
-      console.log(this.numClientes);
     });
   }
 
