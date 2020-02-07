@@ -1,7 +1,15 @@
-<div class="display-4 mb-3">Productos <input class="btn btn-success" type="button" value="Nuevo Producto"
-    (click)="crearNuevoProducto()"></div>
+<div class="display-4 mb-3">
+  Productos
+  <input
+    class="btn btn-success"
+    type="button"
+    value="Nuevo Producto"
+    (click)="crearNuevoProducto()"
+  />
+</div>
+
 <div class="container">
-  <table class='table'>
+  <table class="table">
     <thead class="thead-dark">
       <tr>
         <th>ID</th>
@@ -13,37 +21,68 @@
       </tr>
     </thead>
     <tr *ngFor="let prod of arrayProductos">
-      <th>{{prod.id}}</th>
-      <td>{{prod.nombre}}</td>
-      <td>{{prod.precio}}</td>
-      <td>{{prod.descripcion}}</td>
-      <td>{{prod.imagen}}</td>
+      <th>{{ prod.id }}</th>
+      <td>{{ prod.nombre }}</td>
+      <td>{{ prod.precio }}</td>
+      <td>{{ prod.descripcion }}</td>
+      <td>{{ prod.imagen }}</td>
       <td>
-        <input class="btn btn-outline-secondary" type="button" value="Borrar" (click)="borrarCategoria(prod)">
+        <input
+          class="btn btn-outline-secondary"
+          type="button"
+          value="Borrar"
+          (click)="borrarCategoria(prod)"
+        />
       </td>
       <td>
-        <input class="btn btn-secondary" type="button" value="Modificar" (click)="modificarCategoria(prod)">
+        <input
+          class="btn btn-secondary"
+          type="button"
+          value="Modificar"
+          (click)="modificarCategoria(prod)"
+        />
       </td>
     </tr>
 
-    <tr *ngIf="nuevo">
+    <tr *ngIf="nuevo" #scrollMe [scrollTop]="scrollMe.scrollHeight">
       <th>
-        {{nuevoProducto.id}}
+        {{ nuevoProducto.id }}
       </th>
       <td>
-        <input class="form-control" type="text" name="nuevoNombre" [(ngModel)]="nuevoProducto.nombre">
+        <input
+          class="form-control"
+          type="text"
+          name="nuevoNombre"
+          [(ngModel)]="nuevoProducto.nombre"
+        />
       </td>
       <td>
-        <input class="form-control" type="text" name="nuevoImagen" [(ngModel)]="nuevoProducto.precio">
+        <input
+          class="form-control"
+          type="text"
+          name="nuevoImagen"
+          [(ngModel)]="nuevoProducto.precio"
+        />
       </td>
       <td>
-        <input class="form-control" type="text" name="nuevoIcono" [(ngModel)]="nuevoProducto.descripcion">
+        <input
+          class="form-control"
+          type="text"
+          name="nuevoIcono"
+          [(ngModel)]="nuevoProducto.descripcion"
+        />
       </td>
       <td>
-        <input class="form-control" type="text" name="nuevoIcono" [(ngModel)]="nuevoProducto.imagen">
+        <!-- <input class="form-control" type="text" name="nuevoIcono" [(ngModel)]="nuevoProducto.imagen"> -->
+        <input type="file" (change)="cargandoImagen($event.target.files)" />
       </td>
       <td colspan="2">
-        <input class="btn btn-secondary" type="button" value="Guardar" (click)="guardarCategoria()">
+        <input
+          class="btn btn-secondary"
+          type="button"
+          value="Guardar"
+          (click)="guardarCategoria()"
+        />
       </td>
     </tr>
   </table>

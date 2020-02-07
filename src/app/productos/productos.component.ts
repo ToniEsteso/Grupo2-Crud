@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductosService } from '../services/productos.service';
-import { RespuestaApi } from '../interfaces/respuesta-api';
-import { ApiLoginRespuesta } from '../models/api-login-respuesta.model';
-import { Producto } from '../models/producto.model';
+import { Component, OnInit } from "@angular/core";
+import { ProductosService } from "../services/productos.service";
+import { RespuestaApi } from "../interfaces/respuesta-api";
+import { ApiLoginRespuesta } from "../models/api-login-respuesta.model";
+import { Producto } from "../models/producto.model";
 
 @Component({
-  selector: 'app-productos',
-  templateUrl: './productos.component.html',
-  styleUrls: ['./productos.component.scss']
+  selector: "app-productos",
+  templateUrl: "./productos.component.html",
+  styleUrls: ["./productos.component.scss"]
 })
 export class ProductosComponent implements OnInit {
   arrayProductos: Producto[];
@@ -22,8 +22,7 @@ export class ProductosComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
   crearNuevoProducto() {
     let maxId = 1;
     this.arrayProductos.forEach(prod => {
@@ -33,7 +32,7 @@ export class ProductosComponent implements OnInit {
     });
 
     this.nuevo = true;
-    this.nuevoProducto = new Producto(0, '', 0, '', '');
+    this.nuevoProducto = new Producto(0, "", 0, "", "");
     this.nuevoProducto.id = maxId + 1;
   }
   modificarCategoria(cat) {
@@ -47,4 +46,30 @@ export class ProductosComponent implements OnInit {
     this.crearNuevoProducto();
   }
 
+  public respuestaImagenEnviada;
+  public resultadoCarga;
+
+  public cargandoImagen(files: FileList) {
+    this.productosService.postFileImagen(files[0]).subscribe(
+      response => {
+        this.respuestaImagenEnviada = response;
+        console.log(response);
+        if (this.respuestaImagenEnviada <= 1) {
+          console.log("Error en el servidor");
+        } else {
+          if (
+            this.respuestaImagenEnviada.code == 200 &&
+            this.respuestaImagenEnviada.status == "success"
+          ) {
+            this.resultadoCarga = 1;
+          } else {
+            this.resultadoCarga = 2;
+          }
+        }
+      },
+      error => {
+        console.log(<any>error);
+      }
+    );
+  }
 }
