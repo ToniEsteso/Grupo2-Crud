@@ -50,6 +50,7 @@ export class ProductosComponent implements OnInit {
   public resultadoCarga;
 
   public cargandoImagen(files: FileList) {
+    console.log(files);
     this.productosService.postFileImagen(files[0]).subscribe(
       response => {
         this.respuestaImagenEnviada = response;
