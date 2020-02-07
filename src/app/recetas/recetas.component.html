@@ -1,0 +1,45 @@
+<div class="display-4 mb-3">Recetas <input class="btn btn-success" type="button" value="Nuevo Producto"
+    (click)="crearNuevaReceta()"></div>
+<div class="container">
+  <table class='table'>
+    <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>NOMBRE</th>
+        <th>ENLACE</th>
+        <th>IMAGEN</th>
+        <th colspan="2">Opciones</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let rec of arrayRecetas">
+      <th>{{rec.id}}</th>
+      <td>{{rec.nombre}}</td>
+      <td>{{rec.enlace}}</td>
+      <td>{{rec.imagen}}</td>
+      <td>
+        <input class="btn btn-outline-secondary" type="button" value="Borrar" (click)="borrarReceta(rec)">
+      </td>
+      <td>
+        <input class="btn btn-secondary" type="button" value="Modificar" (click)="modificarReceta(rec)">
+      </td>
+    </tr>
+
+    <tr *ngIf="nuevo">
+      <th>
+        {{nuevaReceta.id}}
+      </th>
+      <td>
+        <input class="form-control" type="text" name="nuevoNombre" [(ngModel)]="nuevaReceta.nombre">
+      </td>
+      <td>
+        <input class="form-control" type="text" name="nuevoImagen" [(ngModel)]="nuevaReceta.enlace">
+      </td>
+      <td>
+        <input class="form-control" type="text" name="nuevoIcono" [(ngModel)]="nuevaReceta.imagen">
+      </td>
+      <td colspan="2">
+        <input class="btn btn-secondary" type="button" value="Guardar" (click)="guardarReceta()">
+      </td>
+    </tr>
+  </table>
+</div>

@@ -4,7 +4,7 @@ import { RespuestaApiPanel } from 'src/app/models/respuesta-api-panel';
 import { ProductoMasComprado } from 'src/app/models/producto-mas-comprado';
 import { Producto } from 'src/app/models/producto.model';
 import { ProductoMasCompradoChart } from 'src/app/models/producto-mas-comprado-chart';
-import { ConfigApi } from "../../models/config-api.model";
+import { ConfigApi } from '../../models/config-api.model';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';

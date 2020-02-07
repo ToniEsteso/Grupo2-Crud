@@ -13,6 +13,9 @@ import { PanelRecetasComponent } from '../paneles/panel-recetas/panel-recetas.co
 import { PanelIngresosComponent } from '../paneles/panel-ingresos/panel-ingresos.component';
 import { PanelProductosCompradosComponent } from '../paneles/panel-productos-comprados/panel-productos-comprados.component';
 import { PanelComprasCategoriaComponent } from '../paneles/panel-compras-categoria/panel-compras-categoria.component';
+import { RedesSocialesComponent } from '../redes-sociales/redes-sociales.component';
+import { RecetasComponent } from '../recetas/recetas.component';
+import { UsuariosComponent } from '../usuarios/usuarios.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { PanelComprasCategoriaComponent } from '../paneles/panel-compras-categor
     PanelRecetasComponent,
     PanelIngresosComponent,
     PanelProductosCompradosComponent,
-    PanelComprasCategoriaComponent
+    PanelComprasCategoriaComponent,
+    RedesSocialesComponent,
+    RecetasComponent,
+    UsuariosComponent
   ],
   imports: [
     CommonModule,
