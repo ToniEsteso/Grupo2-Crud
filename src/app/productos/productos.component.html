@@ -31,7 +31,7 @@
           class="btn btn-outline-secondary"
           type="button"
           value="Borrar"
-          (click)="borrarCategoria(prod)"
+          (click)="borrarProducto(prod)"
         />
       </td>
       <td>
@@ -39,12 +39,12 @@
           class="btn btn-secondary"
           type="button"
           value="Modificar"
-          (click)="modificarCategoria(prod)"
+          (click)="modificarProducto(prod)"
         />
       </td>
     </tr>
 
-    <tr *ngIf="nuevo" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+    <tr *ngIf="nuevo">
       <th>
         {{ nuevoProducto.id }}
       </th>
@@ -60,7 +60,7 @@
         <input
           class="form-control"
           type="text"
-          name="nuevoImagen"
+          name="nuevoPrecio"
           [(ngModel)]="nuevoProducto.precio"
         />
       </td>
@@ -73,15 +73,25 @@
         />
       </td>
       <td>
-        <!-- <input class="form-control" type="text" name="nuevoIcono" [(ngModel)]="nuevoProducto.imagen"> -->
-        <input type="file" (change)="cargandoImagen($event.target.files)" />
+        <!-- <input
+          class="form-control"
+          type="file"
+          name="nuevoIcono"
+          [(ngModel)]="nuevoProducto.imagen"
+        /> -->
+        <input
+          type="file"
+          class="form-control"
+          name="nuevoIcono"
+          (change)="obtenerImagen($event.target.files)"
+        />
       </td>
       <td colspan="2">
         <input
           class="btn btn-secondary"
           type="button"
           value="Guardar"
-          (click)="guardarCategoria()"
+          (click)="guardarProducto()"
         />
       </td>
     </tr>

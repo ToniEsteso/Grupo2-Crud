@@ -3,9 +3,15 @@ export class Producto {
   nombre: string;
   precio: number;
   descripcion: string;
-  imagen: string;
+  imagen: File;
 
-  constructor(id: number, nombre: string, precio: number, descripcion: string, imagen: string) {
+  constructor(
+    id: number,
+    nombre: string,
+    precio: number,
+    descripcion: string,
+    imagen: File
+  ) {
     this.id = id;
     this.nombre = nombre;
     this.precio = precio;

@@ -13,6 +13,7 @@ export class ProductosComponent implements OnInit {
   arrayProductos: Producto[];
   nuevo: boolean = false;
   nuevoProducto: Producto;
+  imagenASubir: FileList;
 
   constructor(private productosService: ProductosService) {
     let respuesta = productosService.getAll();
@@ -32,45 +33,72 @@ export class ProductosComponent implements OnInit {
     });
 
     this.nuevo = true;
-    this.nuevoProducto = new Producto(0, "", 0, "", "");
+    this.nuevoProducto = new Producto(0, "", 0, "", null);
     this.nuevoProducto.id = maxId + 1;
   }
-  modificarCategoria(cat) {
+  modificarProducto(cat) {
     console.log(cat);
   }
-  borrarCategoria(cat) {
+  borrarProducto(cat) {
     console.log(cat);
   }
-  guardarCategoria() {
-    this.arrayProductos.push(this.nuevoProducto);
+  guardarProducto() {
+    var formData = new FormData();
+    formData.append("nombre", this.nuevoProducto.nombre);
+    formData.append("precio", this.nuevoProducto.precio.toString());
+    formData.append("descripcion", this.nuevoProducto.descripcion);
+    formData.append("imagen", this.nuevoProducto.imagen);
+    console.log("this.nuevoProducto");
+    console.log(this.nuevoProducto);
+    console.log("this.nuevoProducto");
+    // ESTO LO ESTABA MIRANDO JUSTO ANTES DE IRME
+    //    var formData: any = new FormData();
+    // formData.append("name", this.form.get('name').value);
+    // formData.append("avatar", this.form.get('avatar').value);
+
+    // this.http.post('http://localhost:4000/api/create-user', formData).subscribe(
+    //   (response) => console.log(response),
+    //   (error) => console.log(error)
+    // )
+    this.productosService
+      .subirProducto(formData)
+      .subscribe(nuevoProducto => this.arrayProductos.push(nuevoProducto));
+    // this.cargandoImagen(this.imagenASubir);
     this.crearNuevoProducto();
   }
 
-  public respuestaImagenEnviada;
-  public resultadoCarga;
-
-  public cargandoImagen(files: FileList) {
-    console.log(files);
-    this.productosService.postFileImagen(files[0]).subscribe(
-      response => {
-        this.respuestaImagenEnviada = response;
-        console.log(response);
-        if (this.respuestaImagenEnviada <= 1) {
-          console.log("Error en el servidor");
-        } else {
-          if (
-            this.respuestaImagenEnviada.code == 200 &&
-            this.respuestaImagenEnviada.status == "success"
-          ) {
-            this.resultadoCarga = 1;
-          } else {
-            this.resultadoCarga = 2;
-          }
-        }
-      },
-      error => {
-        console.log(<any>error);
-      }
-    );
+  obtenerImagen(files: FileList) {
+    this.imagenASubir = files;
+    console.log(this.imagenASubir);
+    this.nuevoProducto.imagen = files[0];
   }
+
+  // public respuestaImagenEnviada;
+  // public resultadoCarga;
+
+  // public cargandoImagen(files: FileList) {
+  //   this.productosService.postFileImagen(files[0]).subscribe(
+  //     response => {
+  //       this.respuestaImagenEnviada = response;
+  //       console.log("response");
+  //       console.log(response);
+  //       console.log("response");
+  //       if (this.respuestaImagenEnviada <= 1) {
+  //         console.log("Error en el servidor");
+  //       } else {
+  //         if (
+  //           this.respuestaImagenEnviada.code == 200 &&
+  //           this.respuestaImagenEnviada.status == "success"
+  //         ) {
+  //           this.resultadoCarga = 1;
+  //         } else {
+  //           this.resultadoCarga = 2;
+  //         }
+  //       }
+  //     },
+  //     error => {
+  //       console.log(<any>error);
+  //     }
+  //   );
+  // }
 }
