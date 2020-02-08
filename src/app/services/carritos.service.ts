@@ -14,4 +14,7 @@ export class CarritosService {
   public getNumCompras() {
     return this.http.get<RespuestaApiPanel>(this.apiURL + '/numeroCompras');
   }
+  public getResumenAnualIngresos() {
+    return this.http.get<RespuestaApiPanel>(this.apiURL + '/resumenIngresos');
+  }
 }

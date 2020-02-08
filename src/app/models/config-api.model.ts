@@ -5,6 +5,7 @@ export class ConfigApi {
   private apiCategorias: string = this.apiRoot + '/categorias';
   private apiCarritos: string = this.apiRoot + '/carrito';
   private apiRecetas: string = this.apiRoot + '/recetas';
+  private apiRedesSociales: string = this.apiRoot + '/redessociales';
   private apiImagenes: string = 'http://127.0.0.1:8000/imagenes';
 
   getApiAuth() {
@@ -24,5 +25,8 @@ export class ConfigApi {
   }
   getApiRecetas() {
     return this.apiRecetas;
+  }
+  getApiRedesSociales() {
+    return this.apiRedesSociales;
   }
 }
