@@ -48,10 +48,7 @@ export class PanelProductosCompradosComponent implements OnInit, AfterViewInit, 
       let chart = am4core.create('chartProductosMasComprados', am4charts.XYChart);
 
       // Add data
-      console.log(this.arrayProductosChart);
-
       chart.data = this.arrayProductosChart;
-      // chart.data = this.arrayProductosChart;
 
       // Create axes
       let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());

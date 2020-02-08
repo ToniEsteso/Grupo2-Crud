@@ -1,1 +1,48 @@
-<p>redes-sociales works!</p>
+<div class="display-4 mb-3">
+  Redes Sociales
+  <input class="btn btn-success" type="button" value="Nuevo Producto" (click)="crearNuevaRedSocial()" />
+</div>
+
+<div class="container">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>NOMBRE</th>
+        <th>ENLACE</th>
+        <th>ICONO</th>
+        <th colspan="2">Opciones</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let red of arrayRedesSociales">
+      <th>{{ red.id }}</th>
+      <td>{{ red.nombre }}</td>
+      <td>{{ red.enlace }}</td>
+      <td>{{ red.icono }}</td>
+      <td>
+        <input class="btn btn-outline-secondary" type="button" value="Borrar" (click)="borrarRedSocial(red)" />
+      </td>
+      <td>
+        <input class="btn btn-secondary" type="button" value="Modificar" (click)="modificarRedSocial(red)" />
+      </td>
+    </tr>
+
+    <tr *ngIf="nueva" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+      <th>
+        {{ nuevaRed.id }}
+      </th>
+      <td>
+        <input class="form-control" type="text" name="nuevoNombre" [(ngModel)]="nuevaRed.nombre" />
+      </td>
+      <td>
+        <input class="form-control" type="text" name="nuevoImagen" [(ngModel)]="nuevaRed.enlace" />
+      </td>
+      <td>
+        <input class="form-control" type="text" name="nuevoIcono" [(ngModel)]="nuevaRed.icono" />
+      </td>
+      <td colspan="2">
+        <input class="btn btn-secondary" type="button" value="Guardar" (click)="guardarRedSocial()" />
+      </td>
+    </tr>
+  </table>
+</div>
