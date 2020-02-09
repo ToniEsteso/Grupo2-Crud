@@ -51,12 +51,16 @@ export class ProductosService {
     console.log("Producto desde subir producto");
     console.log(producto);
     console.log("Producto");
-
-    return this.http.post<Producto>(
-      this.apiURL + "/nuevo",
-      producto,
-      httpOptions
+    this.http.post(this.apiURL + "/nuevo", producto).subscribe(
+      response => console.log(response),
+      error => console.log(error)
     );
+
+    // return this.http.post<Producto>(
+    //   this.apiURL + "/nuevo",
+    //   producto,
+    //   httpOptions
+    // );
   }
 
   public postFileImagen(imagenParaSubir: File) {

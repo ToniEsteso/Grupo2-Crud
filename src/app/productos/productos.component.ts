@@ -3,6 +3,7 @@ import { ProductosService } from "../services/productos.service";
 import { RespuestaApi } from "../interfaces/respuesta-api";
 import { ApiLoginRespuesta } from "../models/api-login-respuesta.model";
 import { Producto } from "../models/producto.model";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-productos",
@@ -14,6 +15,7 @@ export class ProductosComponent implements OnInit {
   nuevo: boolean = false;
   nuevoProducto: Producto;
   imagenASubir: FileList;
+  private http: HttpClient;
 
   constructor(private productosService: ProductosService) {
     let respuesta = productosService.getAll();
@@ -56,13 +58,9 @@ export class ProductosComponent implements OnInit {
     // formData.append("name", this.form.get('name').value);
     // formData.append("avatar", this.form.get('avatar').value);
 
-    // this.http.post('http://localhost:4000/api/create-user', formData).subscribe(
-    //   (response) => console.log(response),
-    //   (error) => console.log(error)
-    // )
-    this.productosService
-      .subirProducto(formData)
-      .subscribe(nuevoProducto => this.arrayProductos.push(nuevoProducto));
+    this.productosService.subirProducto(formData);
+    // .subscribe(nuevoProducto => this.arrayProductos.push(nuevoProducto));
+    this.arrayProductos.push(this.nuevoProducto);
     // this.cargandoImagen(this.imagenASubir);
     this.crearNuevoProducto();
   }
