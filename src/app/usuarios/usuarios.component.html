@@ -1,1 +1,113 @@
-<p>usuarios works!</p>
+<div class="display-4 mb-3">
+  Productos
+  <input
+    class="btn btn-success"
+    type="button"
+    value="Nuevo Producto"
+    (click)="crearNuevoUsuario()"
+  />
+</div>
+
+<div class="container">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>NOMBRE</th>
+        <th>APELLIDOS</th>
+        <th>EMAIL</th>
+        <th>NICKNAME</th>
+        <th>ADMIN</th>
+        <th>AVATAR</th>
+        <th colspan="2">Opciones</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let usuario of arrayUsuarios">
+      <th>{{ usuario.id }}</th>
+      <td>{{ usuario.nombre }}</td>
+      <td>{{ usuario.apellidos }}</td>
+      <td>{{ usuario.email }}</td>
+      <td>{{ usuario.nickname }}</td>
+      <td>{{ usuario.admin }}</td>
+      <td>{{ usuario.avatar }}</td>
+      <td>
+        <input
+          class="btn btn-outline-secondary"
+          type="button"
+          value="Borrar"
+          (click)="borrarUsuario(usuario)"
+        />
+      </td>
+      <td>
+        <input
+          class="btn btn-secondary"
+          type="button"
+          value="Modificar"
+          (click)="modificarUsuario(usuario)"
+        />
+      </td>
+    </tr>
+
+    <tr *ngIf="nuevo">
+      <th>
+        {{ nuevoUsuario.id }}
+      </th>
+      <td>
+        <input
+          class="form-control"
+          type="text"
+          name="nuevoNombre"
+          [(ngModel)]="nuevoUsuario.nombre"
+        />
+      </td>
+      <td>
+        <input
+          class="form-control"
+          type="text"
+          name="nuevoApellidos"
+          [(ngModel)]="nuevoUsuario.apellidos"
+        />
+      </td>
+      <td>
+        <input
+          class="form-control"
+          type="text"
+          name="nuevoEmail"
+          [(ngModel)]="nuevoUsuario.email"
+        />
+      </td>
+      <td>
+        <input
+          class="form-control"
+          type="text"
+          name="nuevoNickname"
+          [(ngModel)]="nuevoUsuario.nickname"
+        />
+      </td>
+      <td>
+        <input
+          class="form-control"
+          type="text"
+          name="nuevoAdmin"
+          [(ngModel)]="nuevoUsuario.admin"
+        />
+      </td>
+      <td>
+        <input
+          type="file"
+          class="form-control"
+          name="nuevoAvatar"
+          (change)="obtenerImagen($event.target.files)"
+        />
+      </td>
+      <td colspan="2">
+        <input
+          class="btn btn-secondary"
+          type="button"
+          value="Guardar"
+          (click)="guardarUsuario()"
+        />
+      </td>
+    </tr>
+  </table>
+</div>

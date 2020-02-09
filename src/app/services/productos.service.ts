@@ -62,10 +62,4 @@ export class ProductosService {
     //   httpOptions
     // );
   }
-
-  public postFileImagen(imagenParaSubir: File) {
-    const formData = new FormData();
-    formData.append("imagen", imagenParaSubir, imagenParaSubir.name);
-    return this.http.post(this.apiURL + "/subirImagen", formData);
-  }
 }
