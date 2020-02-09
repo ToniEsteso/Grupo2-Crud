@@ -27,7 +27,7 @@ export class CategoriasService {
     console.log("Categoria desde subir Categoria");
     console.log(categoria);
     console.log("Categoria");
-    this.http.post(this.apiURL + "/nuevo", categoria).subscribe(
+    this.http.post(this.apiURL + "/nueva", categoria).subscribe(
       response => console.log(response),
       error => console.log(error)
     );
