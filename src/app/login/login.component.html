@@ -1,8 +1,38 @@
-<div>
+<!-- <div>
   <form class="form-group">
     <input type="email" name="email" class="form-control" placeholder="Introduzca el usuario" [(ngModel)]='nombre'>
     <input type="password" name="contrasenya" class="form-control" placeholder="Introduzca la contraseña"
       [(ngModel)]='contrasenya'>
     <input type="submit" value="login" (click)="enviarLogin()">
   </form>
+</div> -->
+<div class="container">
+  <div class="login-container">
+    <div class="form-box">
+      <form class="form-group">
+        <input
+          type="email"
+          name="email"
+          class="form-control"
+          placeholder="Username"
+          [(ngModel)]="nombre"
+        />
+        <input
+          type="password"
+          name="contrasenya"
+          class="form-control"
+          placeholder="Password"
+          [(ngModel)]="contrasenya"
+        />
+        <button
+          class="btn btn-info btn-block login"
+          type="submit"
+          value="login"
+          (click)="enviarLogin()"
+        >
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
 </div>

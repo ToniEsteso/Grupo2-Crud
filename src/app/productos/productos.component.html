@@ -14,8 +14,8 @@
       <tr>
         <th>ID</th>
         <th>NOMBRE</th>
-        <th>PRECIO</th>
         <th>DESCRIPCION</th>
+        <th>PRECIO</th>
         <th>IMAGEN</th>
         <th colspan="2">Opciones</th>
       </tr>
@@ -23,8 +23,8 @@
     <tr *ngFor="let prod of arrayProductos">
       <th>{{ prod.id }}</th>
       <td>{{ prod.nombre }}</td>
-      <td>{{ prod.precio }}</td>
       <td>{{ prod.descripcion }}</td>
+      <td>{{ prod.precio }}</td>
       <td>{{ prod.imagen }}</td>
       <td>
         <input
@@ -60,16 +60,16 @@
         <input
           class="form-control"
           type="text"
-          name="nuevoPrecio"
-          [(ngModel)]="nuevoProducto.precio"
+          name="nuevoIcono"
+          [(ngModel)]="nuevoProducto.descripcion"
         />
       </td>
       <td>
         <input
           class="form-control"
           type="text"
-          name="nuevoIcono"
-          [(ngModel)]="nuevoProducto.descripcion"
+          name="nuevoPrecio"
+          [(ngModel)]="nuevoProducto.precio"
         />
       </td>
       <td>
