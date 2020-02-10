@@ -18,7 +18,11 @@ export class ProductosComponent implements OnInit {
   private http: HttpClient;
 
   constructor(private productosService: ProductosService) {
-    let respuesta = productosService.getAll();
+    this.cargarProductos();
+  }
+
+  cargarProductos() {
+    let respuesta = this.productosService.getAll();
 
     respuesta.subscribe((apiData: RespuestaApi) => {
       this.arrayProductos = apiData.data;
@@ -41,8 +45,11 @@ export class ProductosComponent implements OnInit {
   modificarProducto(cat) {
     console.log(cat);
   }
-  borrarProducto(cat) {
-    console.log(cat);
+  borrarProducto(prod) {
+    let id = prod.id;
+    this.productosService
+      .borrarProducto(id)
+      .subscribe(respuesta => this.cargarProductos());
   }
   guardarProducto() {
     var formData = new FormData();

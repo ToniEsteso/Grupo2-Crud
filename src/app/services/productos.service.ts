@@ -62,4 +62,8 @@ export class ProductosService {
     //   httpOptions
     // );
   }
+
+  public borrarProducto(producto: number) {
+    return this.http.delete(this.apiURL + "/" + producto, httpOptions);
+  }
 }
