@@ -1,11 +1,5 @@
 <div class="display-4 mb-3">
-  Productos
-  <input
-    class="btn btn-success"
-    type="button"
-    value="Nuevo Producto"
-    (click)="crearNuevoUsuario()"
-  />
+  Usuarios
 </div>
 
 <div class="container">
@@ -27,24 +21,11 @@
       <td>{{ usuario.nombre }}</td>
       <td>{{ usuario.apellidos }}</td>
       <td>{{ usuario.email }}</td>
-      <td>{{ usuario.nickname }}</td>
+      <td>{{ usuario.nickName }}</td>
       <td>{{ usuario.admin }}</td>
       <td>{{ usuario.avatar }}</td>
       <td>
-        <input
-          class="btn btn-outline-secondary"
-          type="button"
-          value="Borrar"
-          (click)="borrarUsuario(usuario)"
-        />
-      </td>
-      <td>
-        <input
-          class="btn btn-secondary"
-          type="button"
-          value="Modificar"
-          (click)="modificarUsuario(usuario)"
-        />
+        <input class="btn btn-outline-secondary" type="button" value="Borrar" (click)="borrarUsuario(usuario)" />
       </td>
     </tr>
 
@@ -53,60 +34,25 @@
         {{ nuevoUsuario.id }}
       </th>
       <td>
-        <input
-          class="form-control"
-          type="text"
-          name="nuevoNombre"
-          [(ngModel)]="nuevoUsuario.nombre"
-        />
+        <input class="form-control" type="text" name="nuevoNombre" [(ngModel)]="nuevoUsuario.nombre" />
       </td>
       <td>
-        <input
-          class="form-control"
-          type="text"
-          name="nuevoApellidos"
-          [(ngModel)]="nuevoUsuario.apellidos"
-        />
+        <input class="form-control" type="text" name="nuevoApellidos" [(ngModel)]="nuevoUsuario.apellidos" />
       </td>
       <td>
-        <input
-          class="form-control"
-          type="text"
-          name="nuevoEmail"
-          [(ngModel)]="nuevoUsuario.email"
-        />
+        <input class="form-control" type="text" name="nuevoEmail" [(ngModel)]="nuevoUsuario.email" />
       </td>
       <td>
-        <input
-          class="form-control"
-          type="text"
-          name="nuevoNickname"
-          [(ngModel)]="nuevoUsuario.nickname"
-        />
+        <input class="form-control" type="text" name="nuevoNickname" [(ngModel)]="nuevoUsuario.nickName" />
       </td>
       <td>
-        <input
-          class="form-control"
-          type="text"
-          name="nuevoAdmin"
-          [(ngModel)]="nuevoUsuario.admin"
-        />
+        <input class="form-control" type="text" name="nuevoAdmin" [(ngModel)]="nuevoUsuario.admin" />
       </td>
       <td>
-        <input
-          type="file"
-          class="form-control"
-          name="nuevoAvatar"
-          (change)="obtenerImagen($event.target.files)"
-        />
+        <input type="file" class="form-control" name="nuevoAvatar" (change)="obtenerImagen($event.target.files)" />
       </td>
       <td colspan="2">
-        <input
-          class="btn btn-secondary"
-          type="button"
-          value="Guardar"
-          (click)="guardarUsuario()"
-        />
+        <input class="btn btn-secondary" type="button" value="Guardar" (click)="guardarUsuario()" />
       </td>
     </tr>
   </table>

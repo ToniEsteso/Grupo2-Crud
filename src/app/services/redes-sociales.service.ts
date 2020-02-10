@@ -8,10 +8,10 @@ import { RedSocial } from '../models/red-social';
   providedIn: 'root'
 })
 export class RedesSocialesService {
-  apiURL: string = new ConfigApi().getApiRedesSociales();
-  apiImagenes: string = new ConfigApi().getApiImagenes();
+  private apiURL: string = new ConfigApi().getApiRedesSociales();
+  private apiImagenes: string = new ConfigApi().getApiImagenes();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
 
   public getAll() {
@@ -27,12 +27,6 @@ export class RedesSocialesService {
   }
 
   public modificarRedSocial(red: RedSocial) {
-    console.log("la ruta que hace es: " + this.apiURL + '/' + red.id);
-    console.log("y el objeto es: ");
-    console.log(red);
-
-
-
     return this.http.put(this.apiURL + '/' + red.id, red);
   }
 }
