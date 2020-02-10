@@ -1,20 +1,20 @@
-import { Component, OnInit } from "@angular/core";
-import { ProductosService } from "../services/productos.service";
-import { RespuestaApi } from "../interfaces/respuesta-api";
-import { ApiLoginRespuesta } from "../models/api-login-respuesta.model";
-import { Producto } from "../models/producto.model";
-import { HttpClient } from "@angular/common/http";
+import { Component, OnInit } from '@angular/core';
+import { ProductosService } from '../services/productos.service';
+import { RespuestaApi } from '../interfaces/respuesta-api';
+import { ApiLoginRespuesta } from '../models/api-login-respuesta.model';
+import { Producto } from '../models/producto.model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: "app-productos",
-  templateUrl: "./productos.component.html",
-  styleUrls: ["./productos.component.scss"]
+  selector: 'app-productos',
+  templateUrl: './productos.component.html',
+  styleUrls: ['./productos.component.scss']
 })
 export class ProductosComponent implements OnInit {
-  arrayProductos: Producto[];
-  nuevo: boolean = false;
-  nuevoProducto: Producto;
-  imagenASubir: FileList;
+  protected arrayProductos: Producto[];
+  protected nuevo: boolean = false;
+  protected nuevoProducto: Producto;
+  private imagenASubir: FileList;
   private http: HttpClient;
 
   constructor(private productosService: ProductosService) {
@@ -29,7 +29,7 @@ export class ProductosComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
   crearNuevoProducto() {
     let maxId = 1;
     this.arrayProductos.forEach(prod => {
@@ -39,7 +39,12 @@ export class ProductosComponent implements OnInit {
     });
 
     this.nuevo = true;
-    this.nuevoProducto = new Producto(0, "", 0, "", null);
+
+    setTimeout(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    }, 1);
+
+    this.nuevoProducto = new Producto(0, '', 0, '', null);
     this.nuevoProducto.id = maxId + 1;
   }
   modificarProducto(cat) {
@@ -53,17 +58,17 @@ export class ProductosComponent implements OnInit {
   }
   guardarProducto() {
     var formData = new FormData();
-    formData.append("nombre", this.nuevoProducto.nombre);
-    formData.append("precio", this.nuevoProducto.precio.toString());
-    formData.append("descripcion", this.nuevoProducto.descripcion);
-    formData.append("imagen", this.nuevoProducto.imagen);
-    console.log("this.nuevoProducto");
+    formData.append('nombre', this.nuevoProducto.nombre);
+    formData.append('precio', this.nuevoProducto.precio.toString());
+    formData.append('descripcion', this.nuevoProducto.descripcion);
+    formData.append('imagen', this.nuevoProducto.imagen);
+    console.log('this.nuevoProducto');
     console.log(this.nuevoProducto);
-    console.log("this.nuevoProducto");
+    console.log('this.nuevoProducto');
     // ESTO LO ESTABA MIRANDO JUSTO ANTES DE IRME
     //    var formData: any = new FormData();
-    // formData.append("name", this.form.get('name').value);
-    // formData.append("avatar", this.form.get('avatar').value);
+    // formData.append('name', this.form.get('name').value);
+    // formData.append('avatar', this.form.get('avatar').value);
 
     this.productosService.subirProducto(formData);
     // .subscribe(nuevoProducto => this.arrayProductos.push(nuevoProducto));
@@ -85,15 +90,15 @@ export class ProductosComponent implements OnInit {
   //   this.productosService.postFileImagen(files[0]).subscribe(
   //     response => {
   //       this.respuestaImagenEnviada = response;
-  //       console.log("response");
+  //       console.log('response');
   //       console.log(response);
-  //       console.log("response");
+  //       console.log('response');
   //       if (this.respuestaImagenEnviada <= 1) {
-  //         console.log("Error en el servidor");
+  //         console.log('Error en el servidor');
   //       } else {
   //         if (
   //           this.respuestaImagenEnviada.code == 200 &&
-  //           this.respuestaImagenEnviada.status == "success"
+  //           this.respuestaImagenEnviada.status == 'success'
   //         ) {
   //           this.resultadoCarga = 1;
   //         } else {

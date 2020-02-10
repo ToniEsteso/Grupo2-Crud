@@ -35,6 +35,11 @@ export class RedesSocialesComponent implements OnInit {
     });
 
     this.nueva = true;
+
+    setTimeout(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    }, 1);
+
     this.nuevaRed = new RedSocial(0, "", "", "");
     this.nuevaRed.id = maxId + 1;
   }
@@ -56,7 +61,7 @@ export class RedesSocialesComponent implements OnInit {
         this.modificando = false;
         this.cargarRedesSociales();
       });
-    } else{
+    } else {
       this.redesSocialesService.crearRedSocial(this.nuevaRed).subscribe(api => {
         this.nueva = false;
         this.cargarRedesSociales();

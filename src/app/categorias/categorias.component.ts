@@ -35,6 +35,11 @@ export class CategoriasComponent implements OnInit {
     });
 
     this.nuevo = true;
+
+    setTimeout(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    }, 1);
+
     this.nuevaCategoria = new Categoria();
     this.nuevaCategoria.id = maxId + 1;
   }

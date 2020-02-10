@@ -22,7 +22,7 @@ export class RecetasComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   crearNuevaReceta() {
     let maxId = 1;
@@ -33,6 +33,11 @@ export class RecetasComponent implements OnInit {
     });
 
     this.nuevo = true;
+
+    setTimeout(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    }, 1);
+
     this.nuevaReceta = new Receta(0, "", "", null);
     this.nuevaReceta.id = maxId + 1;
   }

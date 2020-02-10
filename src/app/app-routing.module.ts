@@ -6,8 +6,10 @@ import { InicioComponent } from './inicio/inicio.component';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'main', component: InicioComponent,
-      loadChildren: () => import('./inicio/inicio.module').then(m => m.InicioModule) }
+  {
+    path: 'main', component: InicioComponent,
+    loadChildren: () => import('./inicio/inicio.module').then(m => m.InicioModule)
+  }
 ];
 
 @NgModule({

@@ -28,32 +28,5 @@
         <input class="btn btn-outline-secondary" type="button" value="Borrar" (click)="borrarUsuario(usuario)" />
       </td>
     </tr>
-
-    <tr *ngIf="nuevo">
-      <th>
-        {{ nuevoUsuario.id }}
-      </th>
-      <td>
-        <input class="form-control" type="text" name="nuevoNombre" [(ngModel)]="nuevoUsuario.nombre" />
-      </td>
-      <td>
-        <input class="form-control" type="text" name="nuevoApellidos" [(ngModel)]="nuevoUsuario.apellidos" />
-      </td>
-      <td>
-        <input class="form-control" type="text" name="nuevoEmail" [(ngModel)]="nuevoUsuario.email" />
-      </td>
-      <td>
-        <input class="form-control" type="text" name="nuevoNickname" [(ngModel)]="nuevoUsuario.nickName" />
-      </td>
-      <td>
-        <input class="form-control" type="text" name="nuevoAdmin" [(ngModel)]="nuevoUsuario.admin" />
-      </td>
-      <td>
-        <input type="file" class="form-control" name="nuevoAvatar" (change)="obtenerImagen($event.target.files)" />
-      </td>
-      <td colspan="2">
-        <input class="btn btn-secondary" type="button" value="Guardar" (click)="guardarUsuario()" />
-      </td>
-    </tr>
   </table>
 </div>
