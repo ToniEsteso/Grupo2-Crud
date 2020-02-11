@@ -15,14 +15,18 @@ export class RecetasComponent implements OnInit {
   imagenASubir: FileList;
 
   constructor(private recetasService: RecetasService) {
-    let respuesta = recetasService.getAll();
+    this.cargarRecetas();
+  }
+
+  ngOnInit() {}
+
+  cargarRecetas() {
+    let respuesta = this.recetasService.getAll();
 
     respuesta.subscribe((apiData: RespuestaApi) => {
       this.arrayRecetas = apiData.data;
     });
   }
-
-  ngOnInit() { }
 
   crearNuevaReceta() {
     let maxId = 1;
@@ -45,29 +49,21 @@ export class RecetasComponent implements OnInit {
     console.log(receta);
   }
   borrarReceta(receta) {
-    console.log("receta en el component");
-
-    console.log(receta);
-    this.recetasService.borrarReceta(receta);
+    if (confirm("¿Estás seguro de borrar la receta?")) {
+      this.recetasService.borrarReceta(receta).subscribe(respuesta => {
+        this.cargarRecetas();
+      });
+    }
   }
   guardarReceta() {
     var formData = new FormData();
     formData.append("nombre", this.nuevaReceta.nombre);
     formData.append("enlace", this.nuevaReceta.enlace);
     formData.append("imagen", this.nuevaReceta.imagen);
-    console.log("this.nuevaReceta");
-    console.log(this.nuevaReceta);
-    console.log("this.nuevaReceta");
-    // ESTO LO ESTABA MIRANDO JUSTO ANTES DE IRME
-    //    var formData: any = new FormData();
-    // formData.append("name", this.form.get('name').value);
-    // formData.append("avatar", this.form.get('avatar').value);
-
-    this.recetasService.subirReceta(formData);
-    // .subscribe(nuevaReceta => this.arraycATsubirCategorias.push(nuevaReceta));
-    this.arrayRecetas.push(this.nuevaReceta);
-    // this.cargandoImagen(this.imagenASubir);
-    this.crearNuevaReceta();
+    this.recetasService.subirReceta(formData).subscribe(respuestaApi => {
+      this.nuevo = false;
+      this.cargarRecetas();
+    });
   }
 
   obtenerImagen(files: FileList) {

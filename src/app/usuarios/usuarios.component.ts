@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { UsuariosService } from '../services/usuarios.service';
-import { Usuario } from '../models/usuario.model';
-import { HttpClient } from '@angular/common/http';
-import { RespuestaApi } from '../interfaces/respuesta-api';
+import { Component, OnInit } from "@angular/core";
+import { UsuariosService } from "../services/usuarios.service";
+import { Usuario } from "../models/usuario.model";
+import { HttpClient } from "@angular/common/http";
+import { RespuestaApi } from "../interfaces/respuesta-api";
 
 @Component({
-  selector: 'app-usuarios',
-  templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.scss']
+  selector: "app-usuarios",
+  templateUrl: "./usuarios.component.html",
+  styleUrls: ["./usuarios.component.scss"]
 })
 export class UsuariosComponent implements OnInit {
   arrayUsuarios: Usuario[];
@@ -18,7 +18,7 @@ export class UsuariosComponent implements OnInit {
     this.cargarUsuarios();
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   cargarUsuarios() {
     let respuesta = this.usuariosService.getAll();
@@ -29,8 +29,10 @@ export class UsuariosComponent implements OnInit {
   }
 
   borrarUsuario(user) {
-    this.usuariosService.borrarUsuario(user).subscribe(respuestaApi => {
-      this.cargarUsuarios();
-    });
+    if (confirm("¿Estás seguro de borrar al usuario?")) {
+      this.usuariosService.borrarUsuario(user).subscribe(respuestaApi => {
+        this.cargarUsuarios();
+      });
+    }
   }
 }

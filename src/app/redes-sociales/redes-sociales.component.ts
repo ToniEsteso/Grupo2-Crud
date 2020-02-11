@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { RedSocial } from '../models/red-social';
-import { RedesSocialesService } from '../services/redes-sociales.service';
-import { RespuestaApi } from '../interfaces/respuesta-api';
+import { Component, OnInit } from "@angular/core";
+import { RedSocial } from "../models/red-social";
+import { RedesSocialesService } from "../services/redes-sociales.service";
+import { RespuestaApi } from "../interfaces/respuesta-api";
 @Component({
-  selector: 'app-redes-sociales',
-  templateUrl: './redes-sociales.component.html',
-  styleUrls: ['./redes-sociales.component.scss']
+  selector: "app-redes-sociales",
+  templateUrl: "./redes-sociales.component.html",
+  styleUrls: ["./redes-sociales.component.scss"]
 })
 export class RedesSocialesComponent implements OnInit {
   arrayRedesSociales: RedSocial[];
@@ -18,8 +18,7 @@ export class RedesSocialesComponent implements OnInit {
     this.cargarRedesSociales();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   cargarRedesSociales() {
     this.redesSocialesService.getAll().subscribe((apiData: RespuestaApi) => {
@@ -44,10 +43,12 @@ export class RedesSocialesComponent implements OnInit {
     this.nuevaRed.id = maxId + 1;
   }
   borrarRedSocial(red) {
-    this.redesSocialesService.borrarRedSocial(red).subscribe(api => {
-      this.nueva = false;
-      this.cargarRedesSociales();
-    });
+    if (confirm("¿Estás seguro de borrar la red social?")) {
+      this.redesSocialesService.borrarRedSocial(red).subscribe(api => {
+        this.nueva = false;
+        this.cargarRedesSociales();
+      });
+    }
   }
   modificarRedSocial(red) {
     this.nuevaRed = red;
@@ -56,17 +57,18 @@ export class RedesSocialesComponent implements OnInit {
   }
   guardarRedSocial() {
     if (this.modificando) {
-      this.redesSocialesService.modificarRedSocial(this.nuevaRed).subscribe(api => {
-        this.nueva = false;
-        this.modificando = false;
-        this.cargarRedesSociales();
-      });
+      this.redesSocialesService
+        .modificarRedSocial(this.nuevaRed)
+        .subscribe(api => {
+          this.nueva = false;
+          this.modificando = false;
+          this.cargarRedesSociales();
+        });
     } else {
       this.redesSocialesService.crearRedSocial(this.nuevaRed).subscribe(api => {
         this.nueva = false;
         this.cargarRedesSociales();
       });
     }
-
   }
 }
