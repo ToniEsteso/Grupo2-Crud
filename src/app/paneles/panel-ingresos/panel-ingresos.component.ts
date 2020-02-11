@@ -21,7 +21,6 @@ export class PanelIngresosComponent implements OnInit, AfterViewInit, OnDestroy 
   ngOnInit() {
     this.carritosService.getResumenAnualIngresos().subscribe((apiData) => {
       this.arrayIngresosMes = apiData.data;
-      console.log(this.arrayIngresosMes);
       this.crearGrafica();
     });
   }
@@ -58,7 +57,6 @@ export class PanelIngresosComponent implements OnInit, AfterViewInit, OnDestroy 
     let columnTemplate = series.columns.template;
     columnTemplate.strokeWidth = 2;
     columnTemplate.strokeOpacity = 1;
-
   }
   ngOnDestroy() {
     this.zone.runOutsideAngular(() => {

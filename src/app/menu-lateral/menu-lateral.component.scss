@@ -1,1 +1,27 @@
+.navbar-fixed-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 16.66vw;
+  height: 100vh;
+  background-color: #585555;
+}
 
+.list-group-item {
+  color: rgb(225, 225, 225);
+  background-color: #585555;
+  letter-spacing: 0.1em;
+
+
+  &:hover {
+    color: rgb(255, 255, 255);
+    background-color: darken(#585555, 5);
+    padding-left: 1.50rem;
+  }
+
+  &--fixed-bottom {
+    width: 16.66vw;
+    position: absolute;
+    bottom: 0;
+  }
+}

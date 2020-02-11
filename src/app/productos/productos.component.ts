@@ -47,14 +47,15 @@ export class ProductosComponent implements OnInit {
     this.nuevoProducto = new Producto(0, '', 0, '', null);
     this.nuevoProducto.id = maxId + 1;
   }
+
   modificarProducto(cat) {
     console.log(cat);
   }
+
   borrarProducto(prod) {
-    let id = prod.id;
-    this.productosService
-      .borrarProducto(id)
-      .subscribe(respuesta => this.cargarProductos());
+    this.productosService.borrarProducto(prod).subscribe(respuesta => {
+      this.cargarProductos();
+    });
   }
   guardarProducto() {
     var formData = new FormData();
@@ -62,53 +63,15 @@ export class ProductosComponent implements OnInit {
     formData.append('precio', this.nuevoProducto.precio.toString());
     formData.append('descripcion', this.nuevoProducto.descripcion);
     formData.append('imagen', this.nuevoProducto.imagen);
-    console.log('this.nuevoProducto');
-    console.log(this.nuevoProducto);
-    console.log('this.nuevoProducto');
-    // ESTO LO ESTABA MIRANDO JUSTO ANTES DE IRME
-    //    var formData: any = new FormData();
-    // formData.append('name', this.form.get('name').value);
-    // formData.append('avatar', this.form.get('avatar').value);
 
-    this.productosService.subirProducto(formData);
-    // .subscribe(nuevoProducto => this.arrayProductos.push(nuevoProducto));
-    this.arrayProductos.push(this.nuevoProducto);
-    // this.cargandoImagen(this.imagenASubir);
-    this.crearNuevoProducto();
+    this.productosService.subirProducto(formData).subscribe(respuesta => {
+      this.cargarProductos();
+      this.crearNuevoProducto();
+    });
   }
 
   obtenerImagen(files: FileList) {
     this.imagenASubir = files;
-    console.log(this.imagenASubir);
     this.nuevoProducto.imagen = files[0];
   }
-
-  // public respuestaImagenEnviada;
-  // public resultadoCarga;
-
-  // public cargandoImagen(files: FileList) {
-  //   this.productosService.postFileImagen(files[0]).subscribe(
-  //     response => {
-  //       this.respuestaImagenEnviada = response;
-  //       console.log('response');
-  //       console.log(response);
-  //       console.log('response');
-  //       if (this.respuestaImagenEnviada <= 1) {
-  //         console.log('Error en el servidor');
-  //       } else {
-  //         if (
-  //           this.respuestaImagenEnviada.code == 200 &&
-  //           this.respuestaImagenEnviada.status == 'success'
-  //         ) {
-  //           this.resultadoCarga = 1;
-  //         } else {
-  //           this.resultadoCarga = 2;
-  //         }
-  //       }
-  //     },
-  //     error => {
-  //       console.log(<any>error);
-  //     }
-  //   );
-  // }
 }

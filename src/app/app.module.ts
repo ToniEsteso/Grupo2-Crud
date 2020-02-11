@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { InicioComponent } from './inicio/inicio.component';
 import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
+import { LogoComponent } from './logo/logo.component';
 
 
 
@@ -17,7 +18,8 @@ import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
     AppComponent,
     LoginComponent,
     InicioComponent,
-    MenuLateralComponent
+    MenuLateralComponent,
+    LogoComponent
   ],
   imports: [
     BrowserModule,

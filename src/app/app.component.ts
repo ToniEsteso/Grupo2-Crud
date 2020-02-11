@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from './services/usuarios.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { UsuariosService } from './services/usuarios.service';
 export class AppComponent implements OnInit {
   title = 'Grupo2-Crud';
 
-  constructor(private usuariosService: UsuariosService) {
+  constructor(private usuariosService: UsuariosService, private router: Router) {
 
   }
   ngOnInit() {
@@ -17,8 +18,10 @@ export class AppComponent implements OnInit {
   }
 
   checkToken() {
-    this.usuariosService.checkToken().subscribe(respuestaApi => {
-      console.log(respuestaApi);
+    this.usuariosService.checkToken().subscribe(usuario => {
+      if (usuario.admin === 0) {
+        this.router.navigate(['/login']);
+      }
     });
   }
 }

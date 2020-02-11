@@ -20,19 +20,15 @@ export class UsuariosService {
   }
 
   public checkToken() {
-    console.log('check token en usuarios service');
-    console.log('Bearer ' + localStorage.getItem('Usuario'));
-
-    const headers = new HttpHeaders({
-      Authorization: 'Bearer ' + localStorage.getItem('Usuario')
-    });
-
-    return this.http.post(this.apiURL + '/me', { headers });
+    return this.http.post<Usuario>(this.apiURL + '/me', { token: localStorage.getItem('Usuario') });
   }
   public getNumClientes() {
     return this.http.get<RespuestaApiPanel>(this.apiURL + '/numeroUsuarios');
   }
-
+  public logout() {
+    localStorage.setItem('Usuario', '');
+    localStorage.clear();
+  }
   public getAll() {
     return this.http.get<RespuestaApi>(this.apiURL + '/usuarios');
   }

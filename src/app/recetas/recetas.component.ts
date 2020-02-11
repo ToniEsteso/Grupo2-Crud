@@ -14,8 +14,8 @@ export class RecetasComponent implements OnInit {
   nuevaReceta: Receta;
   imagenASubir: FileList;
 
-  constructor(private categoriasService: RecetasService) {
-    let respuesta = categoriasService.getAll();
+  constructor(private recetasService: RecetasService) {
+    let respuesta = recetasService.getAll();
 
     respuesta.subscribe((apiData: RespuestaApi) => {
       this.arrayRecetas = apiData.data;
@@ -41,11 +41,14 @@ export class RecetasComponent implements OnInit {
     this.nuevaReceta = new Receta(0, "", "", null);
     this.nuevaReceta.id = maxId + 1;
   }
-  modificarReceta(cat) {
-    console.log(cat);
+  modificarReceta(receta) {
+    console.log(receta);
   }
-  borrarReceta(cat) {
-    console.log(cat);
+  borrarReceta(receta) {
+    console.log("receta en el component");
+
+    console.log(receta);
+    this.recetasService.borrarReceta(receta);
   }
   guardarReceta() {
     var formData = new FormData();
@@ -60,7 +63,7 @@ export class RecetasComponent implements OnInit {
     // formData.append("name", this.form.get('name').value);
     // formData.append("avatar", this.form.get('avatar').value);
 
-    this.categoriasService.subirReceta(formData);
+    this.recetasService.subirReceta(formData);
     // .subscribe(nuevaReceta => this.arraycATsubirCategorias.push(nuevaReceta));
     this.arrayRecetas.push(this.nuevaReceta);
     // this.cargandoImagen(this.imagenASubir);

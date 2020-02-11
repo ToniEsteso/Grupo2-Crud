@@ -1,14 +1,9 @@
 <div class="display-4 mb-3">
   Recetas
-  <input
-    class="btn btn-success"
-    type="button"
-    value="Nuevo Producto"
-    (click)="crearNuevaReceta()"
-  />
+  <input class="btn btn-success" type="button" value="Nueva Receta" (click)="crearNuevaReceta()" />
 </div>
 
-<div class="container">
+<div class="row px-5">
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -25,20 +20,10 @@
       <td>{{ rec.enlace }}</td>
       <td>{{ rec.imagen }}</td>
       <td>
-        <input
-          class="btn btn-outline-secondary"
-          type="button"
-          value="Borrar"
-          (click)="borrarReceta(rec)"
-        />
+        <input class="btn btn-outline-secondary" type="button" value="Borrar" (click)="borrarReceta(rec)" />
       </td>
       <td>
-        <input
-          class="btn btn-secondary"
-          type="button"
-          value="Modificar"
-          (click)="modificarReceta(rec)"
-        />
+        <input class="btn btn-secondary" type="button" value="Modificar" (click)="modificarReceta(rec)" />
       </td>
     </tr>
 
@@ -47,36 +32,16 @@
         {{ nuevaReceta.id }}
       </th>
       <td>
-        <input
-          class="form-control"
-          type="text"
-          name="nuevoNombre"
-          [(ngModel)]="nuevaReceta.nombre"
-        />
+        <input class="form-control" type="text" name="nuevoNombre" [(ngModel)]="nuevaReceta.nombre" />
       </td>
       <td>
-        <input
-          class="form-control"
-          type="text"
-          name="nuevoImagen"
-          [(ngModel)]="nuevaReceta.enlace"
-        />
+        <input class="form-control" type="text" name="nuevoImagen" [(ngModel)]="nuevaReceta.enlace" />
       </td>
       <td>
-        <input
-          class="form-control"
-          type="file"
-          name="nuevoImagen"
-          (change)="obtenerImagen($event.target.files)"
-        />
+        <input class="form-control" type="file" name="nuevoImagen" (change)="obtenerImagen($event.target.files)" />
       </td>
       <td colspan="2">
-        <input
-          class="btn btn-secondary"
-          type="button"
-          value="Guardar"
-          (click)="guardarReceta()"
-        />
+        <input class="btn btn-secondary" type="button" value="Guardar" (click)="guardarReceta()" />
       </td>
     </tr>
   </table>
