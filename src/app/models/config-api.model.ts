@@ -1,6 +1,6 @@
 export class ConfigApi {
-  private url = "http://172.16.205.54";
-  // private url = "http://www.api.veganfood.pve2.fpmislata.com/public";
+  // private url = "http://172.16.205.54";
+  private url = "http://www.api.veganfood.pve2.fpmislata.com/public";
   // private url = "http://127.0.0.1:8000";
   private apiRoot = this.url + "/api";
   private apiImagenes: string = this.url + "/imagenes";
