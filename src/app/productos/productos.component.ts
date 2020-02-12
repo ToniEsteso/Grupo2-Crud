@@ -13,9 +13,9 @@ import { HttpClient } from "@angular/common/http";
 export class ProductosComponent implements OnInit {
   protected arrayProductos: Producto[];
   protected nuevo: boolean = false;
+  protected modificando: boolean = false;
   protected nuevoProducto: Producto;
   private imagenASubir: FileList;
-  private http: HttpClient;
 
   constructor(private productosService: ProductosService) {
     this.cargarProductos();
@@ -30,6 +30,7 @@ export class ProductosComponent implements OnInit {
   }
 
   ngOnInit() {}
+
   crearNuevoProducto() {
     let maxId = 1;
     this.arrayProductos.forEach(prod => {
@@ -39,6 +40,7 @@ export class ProductosComponent implements OnInit {
     });
 
     this.nuevo = true;
+    this.modificando = false;
 
     setTimeout(() => {
       window.scrollTo(0, document.body.scrollHeight);
@@ -48,28 +50,49 @@ export class ProductosComponent implements OnInit {
     this.nuevoProducto.id = maxId + 1;
   }
 
-  modificarProducto(prod) {
-    console.log(prod);
+  modificarProducto(prod: Producto) {
+    this.nuevoProducto = { ...prod };
+    this.nuevo = false;
+    this.modificando = true;
   }
 
-  borrarProducto(prod) {
+  borrarProducto(prod: Producto) {
     if (confirm("¿Estás seguro de borrar el producto?")) {
       this.productosService.borrarProducto(prod).subscribe(respuesta => {
         this.cargarProductos();
       });
     }
   }
-  guardarProducto() {
-    var formData = new FormData();
-    formData.append("nombre", this.nuevoProducto.nombre);
-    formData.append("precio", this.nuevoProducto.precio.toString());
-    formData.append("descripcion", this.nuevoProducto.descripcion);
-    formData.append("imagen", this.nuevoProducto.imagen);
+  guardarProducto(tipo: string) {
+    console.log(tipo);
 
-    this.productosService.subirProducto(formData).subscribe(respuesta => {
-      this.cargarProductos();
-      this.nuevo = false;
-    });
+    console.log(this.nuevoProducto);
+
+    if (tipo === "nuevo") {
+      var formData = new FormData();
+      formData.append("nombre", this.nuevoProducto.nombre);
+      formData.append("precio", this.nuevoProducto.precio.toString());
+      formData.append("descripcion", this.nuevoProducto.descripcion);
+      formData.append("imagen", this.nuevoProducto.imagen);
+
+      console.log(formData);
+
+      this.productosService.subirProducto(formData).subscribe(respuesta => {
+        this.cargarProductos();
+        this.nuevo = false;
+      });
+    } else if (tipo === "modificando") {
+      var formData = new FormData();
+      formData.append("nombre", this.nuevoProducto.nombre);
+      formData.append("precio", this.nuevoProducto.precio.toString());
+      formData.append("descripcion", this.nuevoProducto.descripcion);
+      formData.append("imagen", this.nuevoProducto.imagen);
+
+      this.productosService.modificarProducto(formData).subscribe(respuesta => {
+        this.cargarProductos();
+        this.nuevo = false;
+      });
+    }
   }
 
   obtenerImagen(files: FileList) {

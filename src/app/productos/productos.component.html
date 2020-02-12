@@ -44,8 +44,9 @@
       </td>
     </tr>
 
-    <tr *ngIf="nuevo">
-      <th>Nuevo</th>
+    <tr *ngIf="nuevo || modificando">
+      <th *ngIf="nuevo">Nuevo</th>
+      <th *ngIf="modificando">{{ nuevoProducto.id }}</th>
       <td>
         <input
           class="form-control"
