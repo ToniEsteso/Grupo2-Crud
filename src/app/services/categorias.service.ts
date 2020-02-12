@@ -27,6 +27,14 @@ export class CategoriasService {
     return this.http.post(this.apiURL + '/nueva', categoria);
   }
 
+  public modificarCategoria(categoria: FormData) {
+    console.log("DESDE SERVICE");
+    console.log(categoria.get("nombre"));
+    return this.http.post(this.apiURL + "/" + categoria.get("id"), categoria, {
+      responseType: "text"
+    });
+  }
+
   public borrarCategoria(categoria: Categoria) {
     return this.http.delete(this.apiURL + '/' + categoria.nombre, {
       responseType: 'text'

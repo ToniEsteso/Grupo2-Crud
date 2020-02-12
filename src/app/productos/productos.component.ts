@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductosService } from '../services/productos.service';
-import { RespuestaApi } from '../interfaces/respuesta-api';
-import { ApiLoginRespuesta } from '../models/api-login-respuesta.model';
-import { Producto } from '../models/producto.model';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from "@angular/core";
+import { ProductosService } from "../services/productos.service";
+import { RespuestaApi } from "../interfaces/respuesta-api";
+import { ApiLoginRespuesta } from "../models/api-login-respuesta.model";
+import { Producto } from "../models/producto.model";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
-  selector: 'app-productos',
-  templateUrl: './productos.component.html',
-  styleUrls: ['./productos.component.scss']
+  selector: "app-productos",
+  templateUrl: "./productos.component.html",
+  styleUrls: ["./productos.component.scss"]
 })
 export class ProductosComponent implements OnInit {
   protected arrayProductos: Producto[];
@@ -29,7 +29,7 @@ export class ProductosComponent implements OnInit {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   crearNuevoProducto() {
     let maxId = 1;
@@ -46,7 +46,7 @@ export class ProductosComponent implements OnInit {
       window.scrollTo(0, document.body.scrollHeight);
     }, 1);
 
-    this.nuevoProducto = new Producto(0, '', 0, '', null);
+    this.nuevoProducto = new Producto(0, "", 0, "", null);
     this.nuevoProducto.id = maxId + 1;
   }
 
@@ -57,7 +57,7 @@ export class ProductosComponent implements OnInit {
   }
 
   borrarProducto(prod: Producto) {
-    if (confirm('¿Estás seguro de borrar el producto?')) {
+    if (confirm("¿Estás seguro de borrar el producto?")) {
       this.productosService.borrarProducto(prod).subscribe(respuesta => {
         this.cargarProductos();
       });
@@ -68,12 +68,12 @@ export class ProductosComponent implements OnInit {
 
     console.log(this.nuevoProducto);
 
-    if (tipo === 'nuevo') {
+    if (tipo === "nuevo") {
       var formData = new FormData();
-      formData.append('nombre', this.nuevoProducto.nombre);
-      formData.append('precio', this.nuevoProducto.precio.toString());
-      formData.append('descripcion', this.nuevoProducto.descripcion);
-      formData.append('imagen', this.nuevoProducto.imagen);
+      formData.append("nombre", this.nuevoProducto.nombre);
+      formData.append("precio", this.nuevoProducto.precio.toString());
+      formData.append("descripcion", this.nuevoProducto.descripcion);
+      formData.append("imagen", this.nuevoProducto.imagen);
 
       console.log(formData);
 
@@ -81,12 +81,12 @@ export class ProductosComponent implements OnInit {
         this.cargarProductos();
         this.nuevo = false;
       });
-    } else if (tipo === 'modificando') {
+    } else if (tipo === "modificando") {
       var formData = new FormData();
-      formData.append('nombre', this.nuevoProducto.nombre);
-      formData.append('precio', this.nuevoProducto.precio.toString());
-      formData.append('descripcion', this.nuevoProducto.descripcion);
-      formData.append('imagen', this.nuevoProducto.imagen);
+      formData.append("nombre", this.nuevoProducto.nombre);
+      formData.append("precio", this.nuevoProducto.precio.toString());
+      formData.append("descripcion", this.nuevoProducto.descripcion);
+      formData.append("imagen", this.nuevoProducto.imagen);
 
       this.productosService.modificarProducto(formData).subscribe(respuesta => {
         this.cargarProductos();
@@ -98,5 +98,9 @@ export class ProductosComponent implements OnInit {
   obtenerImagen(files: FileList) {
     this.imagenASubir = files;
     this.nuevoProducto.imagen = files[0];
+  }
+
+  cancelar() {
+    this.nuevo = false;
   }
 }

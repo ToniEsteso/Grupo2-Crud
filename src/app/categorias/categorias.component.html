@@ -1,6 +1,11 @@
 <div class="display-4 mb-3">
   Categorias
-  <input class="btn btn-success" type="button" value="Nueva Categoria" (click)="crearNuevaCategoria()" />
+  <input
+    class="btn btn-success"
+    type="button"
+    value="Nueva Categoria"
+    (click)="crearNuevaCategoria()"
+  />
 </div>
 
 <div class="row px-5">
@@ -20,28 +25,77 @@
       <td>{{ cat.icono }}</td>
       <td>{{ cat.imagen }}</td>
       <td>
-        <input class="btn btn-outline-secondary" type="button" value="Borrar" (click)="borrarCategoria(cat)" />
+        <input
+          class="btn btn-outline-secondary"
+          type="button"
+          value="Borrar"
+          (click)="borrarCategoria(cat)"
+        />
       </td>
       <td>
-        <input class="btn btn-secondary" type="button" value="Modificar" (click)="modificarCategoria(cat)" />
+        <input
+          class="btn btn-secondary"
+          type="button"
+          value="Modificar"
+          (click)="mostrarCategoria(cat)"
+        />
       </td>
     </tr>
-    <tr *ngIf="nuevo">
-      <th>
+    <tr *ngIf="nuevo || modificar">
+      <th *ngIf="modificar">
         {{ nuevaCategoria.id }}
       </th>
+      <th *ngIf="nuevo">
+        nuevo
+      </th>
       <td>
-        <input class="form-control" type="text" name="nuevoNombre" [(ngModel)]="nuevaCategoria.nombre" />
+        <input
+          class="form-control"
+          type="text"
+          name="nuevoNombre"
+          [(ngModel)]="nuevaCategoria.nombre"
+        />
       </td>
       <td>
         <!-- <input class="form-control" type="text" name="nuevoIcono" [(ngModel)]="nuevaCategoria.icono"> -->
-        <input type="text" class="form-control" name="nuevoIcono" [(ngModel)]="nuevaCategoria.icono" />
+        <input
+          type="text"
+          class="form-control"
+          name="nuevoIcono"
+          [(ngModel)]="nuevaCategoria.icono"
+        />
       </td>
       <td>
-        <input class="form-control" type="file" name="nuevoImagen" (change)="obtenerImagen($event.target.files)" />
+        <input
+          class="form-control"
+          type="file"
+          name="nuevoImagen"
+          (change)="obtenerImagen($event.target.files)"
+        />
       </td>
-      <td colspan="2">
-        <input class="btn btn-secondary" type="button" value="Guardar" (click)="guardarCategoria()" />
+      <td *ngIf="nuevo">
+        <input
+          class="btn btn-secondary"
+          type="button"
+          value="Guardar"
+          (click)="guardarCategoria()"
+        />
+      </td>
+      <td *ngIf="modificar">
+        <input
+          class="btn btn-secondary"
+          type="button"
+          value="Modificar"
+          (click)="modificarCategoria()"
+        />
+      </td>
+      <td>
+        <input
+          class="btn btn-outline-secondary"
+          type="button"
+          value="cancelar"
+          (click)="cancelar()"
+        />
       </td>
     </tr>
   </table>
