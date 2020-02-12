@@ -13,7 +13,7 @@ import { RespuestaApi } from "../interfaces/respuesta-api";
 export class UsuariosService {
   apiURL: string = new ConfigApi().getApiAuth();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public enviarLogin(usuario: LoginRequest) {
     return this.http.post<ApiLoginRespuesta>(this.apiURL + "/login", usuario);
@@ -25,7 +25,10 @@ export class UsuariosService {
     });
   }
   public getNumClientes() {
-    return this.http.get<RespuestaApiPanel>(this.apiURL + "/numeroUsuarios");
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('Usuario')
+    });
+    return this.http.get<RespuestaApiPanel>(this.apiURL + '/numeroUsuarios', { headers });
   }
   public logout() {
     localStorage.setItem("Usuario", "");

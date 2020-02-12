@@ -19,13 +19,17 @@ export class ProductosService {
   }
 
   public getNumProductos() {
-    return this.http.get<RespuestaApiPanel>(this.apiURL + '/numeroProductos');
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('Usuario')
+    });
+    return this.http.get<RespuestaApiPanel>(this.apiURL + '/numeroProductos', { headers });
   }
 
   public getProductosMasComprados() {
-    return this.http.get<RespuestaApiPanel>(
-      this.apiURL + '/productosMasComprados'
-    );
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('Usuario')
+    });
+    return this.http.get<RespuestaApiPanel>(this.apiURL + '/productosMasComprados', { headers });
   }
 
   public subirProducto(producto: FormData) {

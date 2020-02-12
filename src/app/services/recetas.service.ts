@@ -1,36 +1,39 @@
-import { Injectable } from "@angular/core";
-import { ConfigApi } from "../models/config-api.model";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { RespuestaApi } from "../interfaces/respuesta-api";
-import { RespuestaApiPanel } from "../models/respuesta-api-panel";
-import { Receta } from "../models/receta";
+import { Injectable } from '@angular/core';
+import { ConfigApi } from '../models/config-api.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { RespuestaApi } from '../interfaces/respuesta-api';
+import { RespuestaApiPanel } from '../models/respuesta-api-panel';
+import { Receta } from '../models/receta';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class RecetasService {
   apiURL: string = new ConfigApi().getApiRecetas();
   apiImagenes: string = new ConfigApi().getApiImagenes();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public getAll() {
     return this.http.get<RespuestaApi>(this.apiURL);
   }
 
   public getNumRecetas() {
-    return this.http.get<RespuestaApiPanel>(this.apiURL + "/numeroRecetas");
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('Usuario')
+    });
+    return this.http.get<RespuestaApiPanel>(this.apiURL + '/numeroRecetas', { headers });
   }
 
   public subirReceta(receta: FormData) {
-    return this.http.post(this.apiURL + "/nueva", receta, {
-      responseType: "text"
+    return this.http.post(this.apiURL + '/nueva', receta, {
+      responseType: 'text'
     });
   }
 
   public borrarReceta(receta: Receta) {
-    return this.http.delete(this.apiURL + "/" + receta.id, {
-      responseType: "text"
+    return this.http.delete(this.apiURL + '/' + receta.id, {
+      responseType: 'text'
     });
   }
 }
