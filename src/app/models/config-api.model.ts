@@ -1,12 +1,14 @@
 export class ConfigApi {
-  private apiRoot = "http://127.0.0.1:8000/api";
+  // private url = "http://www.api.veganfood.pve2.fpmislata.com/public";
+  private url = "http://127.0.0.1:8000";
+  private apiRoot = this.url + "/api";
+  private apiImagenes: string = this.url + "/imagenes";
   private apiAuth: string = this.apiRoot + "/auth";
   private apiProductos: string = this.apiRoot + "/productos";
   private apiCategorias: string = this.apiRoot + "/categorias";
   private apiCarritos: string = this.apiRoot + "/carrito";
   private apiRecetas: string = this.apiRoot + "/recetas";
   private apiRedesSociales: string = this.apiRoot + "/redessociales";
-  private apiImagenes: string = "http://127.0.0.1:8000/imagenes";
 
   getApiAuth() {
     return this.apiAuth;
