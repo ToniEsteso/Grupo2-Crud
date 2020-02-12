@@ -24,9 +24,12 @@ export class LoginComponent implements OnInit {
     let respuesta = this.usuariosService.enviarLogin(this.usuario);
 
     respuesta.subscribe((apiData: ApiLoginRespuesta) => {
-      if (apiData.access_token !== '') {
+
+      if (apiData.access_token !== '' && apiData.user.admin === 1) {
         localStorage.setItem('Usuario', apiData.access_token);
         this.router.navigate(['/main']);
+      } else {
+        alert('Login incorrecto');
       }
     });
   }

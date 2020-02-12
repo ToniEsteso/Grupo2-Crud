@@ -29,8 +29,9 @@
       </td>
     </tr>
 
-    <tr *ngIf="nuevo">
-      <th>Nuevo</th>
+    <tr *ngIf="nuevo || modificando">
+      <th *ngIf="nuevo">Nuevo</th>
+      <th *ngIf="modificando">{{nuevoProducto.id}}</th>
       <td>
         <input class="form-control" type="text" name="nuevoNombre" [(ngModel)]="nuevoProducto.nombre" />
       </td>
@@ -41,16 +42,13 @@
         <input class="form-control" type="text" name="nuevoPrecio" [(ngModel)]="nuevoProducto.precio" />
       </td>
       <td>
-        <!-- <input
-          class="form-control"
-          type="file"
-          name="nuevoIcono"
-          [(ngModel)]="nuevoProducto.imagen"
-        /> -->
         <input type="file" class="form-control" name="nuevoIcono" (change)="obtenerImagen($event.target.files)" />
       </td>
       <td colspan="2">
-        <input class="btn btn-secondary" type="button" value="Guardar" (click)="guardarProducto()" />
+        <input class="btn btn-secondary" type="button" value="Guardar" (click)="guardarProducto('nuevo')"
+          *ngIf="nuevo" />
+        <input class="btn btn-secondary" type="button" value="Guardar" (click)="guardarProducto('modificando')"
+          *ngIf="modificando" />
       </td>
     </tr>
   </table>

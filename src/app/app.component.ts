@@ -14,14 +14,23 @@ export class AppComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.checkToken();
+    if (localStorage.getItem('Usuario') !== null) {
+      this.checkToken();
+    }
   }
 
   checkToken() {
-    this.usuariosService.checkToken().subscribe(usuario => {
-      if (usuario.admin === 0) {
+    this.usuariosService.checkToken().subscribe(
+      (usuario) => {
+        if (usuario.admin === 0) {
+          this.router.navigate(['/login']);
+          alert('Tienes que ser administrador para acceder a la administración.');
+        }
+      },
+      (error) => {
         this.router.navigate(['/login']);
+        alert('El token ha expirado.');
       }
-    });
+    );
   }
 }
