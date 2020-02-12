@@ -71,4 +71,8 @@ export class RedesSocialesComponent implements OnInit {
       });
     }
   }
+
+  cancelar() {
+    this.nueva = false;
+  }
 }

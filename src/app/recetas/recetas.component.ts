@@ -71,4 +71,8 @@ export class RecetasComponent implements OnInit {
     console.log(this.imagenASubir);
     this.nuevaReceta.imagen = files[0];
   }
+
+  cancelar() {
+    this.nuevo = false;
+  }
 }

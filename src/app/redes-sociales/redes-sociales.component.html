@@ -1,6 +1,11 @@
 <div class="display-4 mb-3">
   Redes Sociales
-  <input class="btn btn-success" type="button" value="Nueva Red Social" (click)="crearNuevaRedSocial()" />
+  <input
+    class="btn btn-success"
+    type="button"
+    value="Nueva Red Social"
+    (click)="crearNuevaRedSocial()"
+  />
 </div>
 
 <div class="row px-5">
@@ -20,10 +25,20 @@
       <td>{{ red.enlace }}</td>
       <td>{{ red.icono }}</td>
       <td>
-        <input class="btn btn-outline-secondary" type="button" value="Borrar" (click)="borrarRedSocial(red)" />
+        <input
+          class="btn btn-outline-secondary"
+          type="button"
+          value="Borrar"
+          (click)="borrarRedSocial(red)"
+        />
       </td>
       <td>
-        <input class="btn btn-secondary" type="button" value="Modificar" (click)="modificarRedSocial(red)" />
+        <input
+          class="btn btn-secondary"
+          type="button"
+          value="Modificar"
+          (click)="modificarRedSocial(red)"
+        />
       </td>
     </tr>
 
@@ -32,16 +47,44 @@
         {{ nuevaRed.id }}
       </th>
       <td>
-        <input class="form-control" type="text" name="nuevoNombre" [(ngModel)]="nuevaRed.nombre" />
+        <input
+          class="form-control"
+          type="text"
+          name="nuevoNombre"
+          [(ngModel)]="nuevaRed.nombre"
+        />
       </td>
       <td>
-        <input class="form-control" type="text" name="nuevoImagen" [(ngModel)]="nuevaRed.enlace" />
+        <input
+          class="form-control"
+          type="text"
+          name="nuevoImagen"
+          [(ngModel)]="nuevaRed.enlace"
+        />
       </td>
       <td>
-        <input class="form-control" type="text" name="nuevoIcono" [(ngModel)]="nuevaRed.icono" />
+        <input
+          class="form-control"
+          type="text"
+          name="nuevoIcono"
+          [(ngModel)]="nuevaRed.icono"
+        />
       </td>
-      <td colspan="2">
-        <input class="btn btn-secondary" type="button" value="Guardar" (click)="guardarRedSocial()" />
+      <td>
+        <input
+          class="btn btn-secondary"
+          type="button"
+          value="Guardar"
+          (click)="guardarRedSocial()"
+        />
+      </td>
+      <td>
+        <input
+          class="btn btn-outline-secondary"
+          type="button"
+          value="cancelar"
+          (click)="cancelar()"
+        />
       </td>
     </tr>
   </table>

@@ -48,8 +48,8 @@ export class ProductosComponent implements OnInit {
     this.nuevoProducto.id = maxId + 1;
   }
 
-  modificarProducto(cat) {
-    console.log(cat);
+  modificarProducto(prod) {
+    console.log(prod);
   }
 
   borrarProducto(prod) {
@@ -75,5 +75,9 @@ export class ProductosComponent implements OnInit {
   obtenerImagen(files: FileList) {
     this.imagenASubir = files;
     this.nuevoProducto.imagen = files[0];
+  }
+
+  cancelar() {
+    this.nuevo = false;
   }
 }

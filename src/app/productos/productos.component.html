@@ -1,6 +1,11 @@
 <div class="display-4 mb-3">
   Productos
-  <input class="btn btn-success" type="button" value="Nuevo Producto" (click)="crearNuevoProducto()" />
+  <input
+    class="btn btn-success"
+    type="button"
+    value="Nuevo Producto"
+    (click)="crearNuevoProducto()"
+  />
 </div>
 
 <div class="row px-5">
@@ -22,23 +27,48 @@
       <td>{{ prod.precio }}</td>
       <td>{{ prod.imagen }}</td>
       <td>
-        <input class="btn btn-outline-secondary" type="button" value="Borrar" (click)="borrarProducto(prod)" />
+        <input
+          class="btn btn-outline-secondary"
+          type="button"
+          value="Borrar"
+          (click)="borrarProducto(prod)"
+        />
       </td>
       <td>
-        <input class="btn btn-secondary" type="button" value="Modificar" (click)="modificarProducto(prod)" />
+        <input
+          class="btn btn-secondary"
+          type="button"
+          value="Modificar"
+          (click)="modificarProducto(prod)"
+        />
       </td>
     </tr>
 
     <tr *ngIf="nuevo">
       <th>Nuevo</th>
       <td>
-        <input class="form-control" type="text" name="nuevoNombre" [(ngModel)]="nuevoProducto.nombre" />
+        <input
+          class="form-control"
+          type="text"
+          name="nuevoNombre"
+          [(ngModel)]="nuevoProducto.nombre"
+        />
       </td>
       <td>
-        <input class="form-control" type="text" name="nuevoIcono" [(ngModel)]="nuevoProducto.descripcion" />
+        <input
+          class="form-control"
+          type="text"
+          name="nuevoIcono"
+          [(ngModel)]="nuevoProducto.descripcion"
+        />
       </td>
       <td>
-        <input class="form-control" type="text" name="nuevoPrecio" [(ngModel)]="nuevoProducto.precio" />
+        <input
+          class="form-control"
+          type="text"
+          name="nuevoPrecio"
+          [(ngModel)]="nuevoProducto.precio"
+        />
       </td>
       <td>
         <!-- <input
@@ -47,10 +77,28 @@
           name="nuevoIcono"
           [(ngModel)]="nuevoProducto.imagen"
         /> -->
-        <input type="file" class="form-control" name="nuevoIcono" (change)="obtenerImagen($event.target.files)" />
+        <input
+          type="file"
+          class="form-control"
+          name="nuevoIcono"
+          (change)="obtenerImagen($event.target.files)"
+        />
       </td>
-      <td colspan="2">
-        <input class="btn btn-secondary" type="button" value="Guardar" (click)="guardarProducto()" />
+      <td>
+        <input
+          class="btn btn-secondary"
+          type="button"
+          value="Guardar"
+          (click)="guardarProducto()"
+        />
+      </td>
+      <td>
+        <input
+          class="btn btn-outline-secondary"
+          type="button"
+          value="cancelar"
+          (click)="cancelar()"
+        />
       </td>
     </tr>
   </table>
