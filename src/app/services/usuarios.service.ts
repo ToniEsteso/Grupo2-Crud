@@ -23,7 +23,10 @@ export class UsuariosService {
     return this.http.post<Usuario>(this.apiURL + '/me', { token: localStorage.getItem('Usuario') });
   }
   public getNumClientes() {
-    return this.http.get<RespuestaApiPanel>(this.apiURL + '/numeroUsuarios');
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('Usuario')
+    });
+    return this.http.get<RespuestaApiPanel>(this.apiURL + '/numeroUsuarios', { headers });
   }
   public logout() {
     localStorage.setItem('Usuario', '');
