@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
-import { ConfigApi } from '../models/config-api.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { RespuestaApi } from '../interfaces/respuesta-api';
-import { Categoria } from '../models/categoria.model';
+import { Injectable } from "@angular/core";
+import { ConfigApi } from "../models/config-api.model";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { RespuestaApi } from "../interfaces/respuesta-api";
+import { Categoria } from "../models/categoria.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class CategoriasService {
   private apiURL: string = new ConfigApi().getApiCategorias();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   public getAll() {
     return this.http.get<RespuestaApi>(this.apiURL);
@@ -18,13 +18,15 @@ export class CategoriasService {
 
   public getNumProductosCategoria() {
     const headers = new HttpHeaders({
-      Authorization: 'Bearer ' + localStorage.getItem('Usuario')
+      Authorization: "Bearer " + localStorage.getItem("Usuario")
     });
-    return this.http.get<RespuestaApi>(this.apiURL + '/productosCategoria', { headers });
+    return this.http.get<RespuestaApi>(this.apiURL + "/productosCategoria", {
+      headers
+    });
   }
 
   public subirCategoria(categoria: FormData) {
-    return this.http.post(this.apiURL + '/nueva', categoria);
+    return this.http.post(this.apiURL + "/nueva", categoria);
   }
 
   public modificarCategoria(categoria: FormData) {
@@ -36,8 +38,11 @@ export class CategoriasService {
   }
 
   public borrarCategoria(categoria: Categoria) {
-    return this.http.delete(this.apiURL + '/' + categoria.nombre, {
-      responseType: 'text'
+    const headers = new HttpHeaders({
+      Authorization: "Bearer " + localStorage.getItem("Usuario")
+    });
+    return this.http.delete(this.apiURL + "/" + categoria.nombre, {
+      headers
     });
   }
 }
