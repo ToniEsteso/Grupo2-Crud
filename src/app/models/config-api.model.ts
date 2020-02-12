@@ -1,5 +1,5 @@
 export class ConfigApi {
-  private apiRoot = "http://127.0.0.1:8000/api";
+  private apiRoot = "http://172.16.205.54/api";
   private apiAuth: string = this.apiRoot + "/auth";
   private apiProductos: string = this.apiRoot + "/productos";
   private apiCategorias: string = this.apiRoot + "/categorias";
