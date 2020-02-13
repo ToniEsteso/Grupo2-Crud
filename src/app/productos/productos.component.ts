@@ -64,18 +64,12 @@ export class ProductosComponent implements OnInit {
     }
   }
   guardarProducto(tipo: string) {
-    console.log(tipo);
-
-    console.log(this.nuevoProducto);
-
     if (tipo === "nuevo") {
       var formData = new FormData();
       formData.append("nombre", this.nuevoProducto.nombre);
       formData.append("precio", this.nuevoProducto.precio.toString());
       formData.append("descripcion", this.nuevoProducto.descripcion);
       formData.append("imagen", this.nuevoProducto.imagen);
-
-      console.log(formData);
 
       this.productosService.subirProducto(formData).subscribe(respuesta => {
         this.cargarProductos();

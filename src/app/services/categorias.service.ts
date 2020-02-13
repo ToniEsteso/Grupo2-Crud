@@ -26,7 +26,12 @@ export class CategoriasService {
   }
 
   public subirCategoria(categoria: FormData) {
-    return this.http.post(this.apiURL + "/nueva", categoria);
+    const headers = new HttpHeaders({
+      Authorization: "Bearer " + localStorage.getItem("Usuario")
+    });
+    return this.http.post(this.apiURL + "/nueva", categoria, {
+      headers
+    });
   }
 
   public modificarCategoria(categoria: FormData) {
